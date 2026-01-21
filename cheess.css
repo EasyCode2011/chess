@@ -1,0 +1,85 @@
+/* 1. Variables for easy theme customization */
+:root {
+    --bg-color: #2c3e50;
+    --board-border: #34495e;
+    --light-square: #f0d9b5;
+    --dark-square: #b58863;
+    --highlight: rgba(123, 97, 255, 0.7); /* Purple highlight for selection */
+    --hover-effect: rgba(255, 255, 255, 0.2);
+    --square-size: 60px;
+}
+
+/* 2. Page and Container Styling */
+body {
+    background-color: var(--bg-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#game-container {
+    text-align: center;
+    color: white;
+}
+
+/* 3. The Board Grid */
+#board {
+    display: grid;
+    /* Creates an 8x8 grid based on the square-size variable */
+    grid-template-columns: repeat(8, var(--square-size));
+    grid-template-rows: repeat(8, var(--square-size));
+    border: 8px solid var(--board-border);
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    user-select: none; /* Prevents text selection while clicking fast */
+}
+
+/* 4. Square Logic */
+.square {
+    width: var(--square-size);
+    height: var(--square-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 45px;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+    position: relative;
+}
+
+.light { background-color: var(--light-square); }
+.dark { background-color: var(--dark-square); }
+
+/* 5. Interaction Styles */
+.square:hover {
+    box-shadow: inset 0 0 0 5px var(--hover-effect);
+}
+
+.selected {
+    background-color: var(--highlight) !important;
+}
+
+/* 6. Piece Appearance */
+.piece {
+    z-index: 2;
+    transition: transform 0.1s ease;
+}
+
+.white-piece {
+    color: #fff;
+    filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.8));
+}
+
+.black-piece {
+    color: #000;
+}
+
+/* 7. Responsive Adjustments */
+@media (max-width: 500px) {
+    :root {
+        --square-size: 45px;
+    }
+}
